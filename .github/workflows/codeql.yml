@@ -17,7 +17,7 @@ on:
   pull_request:
     branches: [main, master]
   schedule:
-    - cron: '0 6 * * 0'  # weekly scan (every Sunday)
+    - cron: '0 6 * * 0' 
 
 jobs:
   analyze:
@@ -32,7 +32,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [javascript, typescript, python, bash]
+        language: [javascript, typescript, python]
 
     steps:
       - name: Checkout code
@@ -43,7 +43,6 @@ jobs:
         with:
           languages: ${{ matrix.language }}
 
-      # Optional: Install dependencies if needed
       - name: Install dependencies (JS/TS)
         if: matrix.language == 'javascript' || matrix.language == 'typescript'
         run: |
@@ -61,5 +60,5 @@ jobs:
             pip install -r requirements.txt
           fi
 
-      - name: CodeQL Analyze
+      - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
