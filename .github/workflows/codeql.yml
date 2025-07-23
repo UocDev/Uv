@@ -9,13 +9,13 @@
 # the `language` matrix defined below to confirm you have the correct set of
 # supported CodeQL languages.
 #
-name: "CodeQL Analysis"
+name: "Advanced CI / CD"
 
 on:
   push:
-    branches: [main, master]
+    branches: [developer, master, LTS]
   pull_request:
-    branches: [main, master]
+    branches: [developer, master, LTS]
   schedule:
     - cron: '0 6 * * 0' 
 
