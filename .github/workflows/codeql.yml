@@ -32,7 +32,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [javascript, typescript, python]
+        language: [typescript, python]
 
     steps:
       - name: Checkout code
