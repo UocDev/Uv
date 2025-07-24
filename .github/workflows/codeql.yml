@@ -38,6 +38,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Update & Upgrade System Dependents packages
+        run: |
+             sudo apt update && sudo apt full-upgrade -y
+
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
