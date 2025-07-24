@@ -1,0 +1,58 @@
+name: GitHub Usage Tracker
+
+on:
+  workflow_dispatch:
+
+jobs:
+  timed-job:
+    name: Tracked Ubuntu Job
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Update & Upgrade System Dependents packages
+        run: |
+             sudo apt update && sudo apt full-upgrade -y
+
+      - name: Start Timer
+        id: start_time
+        run: echo "start=$(date +%s)" >> $GITHUB_OUTPUT
+
+      - name: Simulated Task
+        run: |
+          echo "Running tasks..."
+          sleep 7  # Simulate workload
+
+      - name: End Timer & Calculate Duration
+        id: end_time
+        run: |
+          end=$(date +%s)
+          start=${{ steps.start_time.outputs.start }}
+          duration=$(( (end - start) / 60 ))
+          seconds=$(( end - start ))
+          echo "duration_minutes=$duration" >> $GITHUB_OUTPUT
+          echo "duration_seconds=$seconds" >> $GITHUB_OUTPUT
+
+      - name: Send Usage Info to Discord
+        env:
+          WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          curl -X POST -H "Content-Type: application/json" \
+          -d '{
+            "username": "GitHub Usage Tracker",
+            "avatar_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+            "embeds": [{
+              "title": "🧠 GitHub Actions Job Completed",
+              "color": 3447003,
+              "fields": [
+                { "name": "📂 Repository", "value": "'"${{ github.repository }}"'", "inline": true },
+                { "name": "💼 Job", "value": "'"${{ github.job }}"'", "inline": true },
+                { "name": "⏱ Duration", "value": "'"${{ steps.end_time.outputs.duration_minutes }} mins (${{
+                    steps.end_time.outputs.duration_seconds }} sec)"'", "inline": true },
+                { "name": "🔗 Run URL", "value": "https://github.com/'"${{ github.repository }}"'/actions/runs/'"${{ github.run_id }}"'" }
+              ],
+              "footer": {
+                "text": "Triggered by ${{ github.actor }} via ${{ github.event_name }}"
+              },
+              "timestamp": "'$(date -u +"%Y-%m-%dT%H:%M:%SZ")'"
+            }]
+          }' $WEBHOOK_URL
