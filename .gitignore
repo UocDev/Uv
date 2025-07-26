@@ -1,36 +1,151 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
+# ──────────────────────────
+# OS / Editor Junk
+# ──────────────────────────
 .DS_Store
-*.pem
+Thumbs.db
+*.swp
+*.swo
+*.swn
+*.tmp
+*.log
+*.bak
+*.orig
+*.old
+*.rej
 
-# debug
+# VSCode / JetBrains
+.vscode/
+.idea/
+*.code-workspace
+
+# ──────────────────────────
+# Node.js / JavaScript / TypeScript
+# ──────────────────────────
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# local env files
-.env*.local
-.env
-
-# vercel
-.vercel
-
-# typescript
+pnpm-lock.yaml
+dist/
+build/
+.cache/
+.next/
+out/
+coverage/
 *.tsbuildinfo
-next-env.d.ts
+
+# ──────────────────────────
+# React / React Native
+# ──────────────────────────
+.expo/
+.expo-shared/
+*.expo/*
+*.expo-shared/*
+android/.gradle/
+android/app/build/
+ios/Pods/
+ios/build/
+*.xcworkspace
+*.xcodeproj
+*.xcuserdata/
+*.hmap
+*.ipa
+*.apk
+
+# Metro bundler
+*.packager
+*.bundle
+*.hprof
+
+# Fastlane (optional)
+fastlane/report.xml
+fastlane/screenshots
+fastlane/test_output
+
+# ──────────────────────────
+# Python
+# ──────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+*.env
+*.venv
+.env/
+venv/
+env/
+pip-log.txt
+
+# ──────────────────────────
+# Rust
+# ──────────────────────────
+/target/
+Cargo.lock
+*.rs.bk
+
+# ──────────────────────────
+# Go (Golang)
+# ──────────────────────────
+/bin/
+/pkg/
+*.exe
+*.test
+*.out
+*.mod
+
+# ──────────────────────────
+# Electron
+# ──────────────────────────
+/electron-out/
+*.asar
+*.node
+*.log
+/app-release.apk
+/main.js.map
+
+# ──────────────────────────
+# Misc: Logs, Keys, Env
+# ──────────────────────────
+.env
+.env.local
+.env.production
+.env.development
+*.key
+*.crt
+*.pem
+*.pfx
+*.sqlite
+*.sqlite3
+*.db
+*.log
+
+# ──────────────────────────
+# Coverage Reports
+# ──────────────────────────
+coverage/
+.nyc_output/
+lcov-report/
+*.lcov
+
+# ──────────────────────────
+# Testing
+# ──────────────────────────
+*.spec.js
+*.test.js
+*.spec.ts
+*.test.ts
+jest.config.js
+playwright-report/
+
+# ──────────────────────────
+# Other CI/CD / Lock
+# ──────────────────────────
+*.lock
+*.tgz
+*.gz
+*.zip
+.Dockerfile
+docker-compose.override.yml
+docker-compose.local.yml
