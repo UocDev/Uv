@@ -12,8 +12,6 @@
 name: "Advanced CI / CD"
 
 on:
-  push:
-    branches: [developer, master, LTS]
   pull_request:
     branches: [developer, master, LTS]
   workflow_dispatch:
