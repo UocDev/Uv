@@ -1,6 +1,6 @@
 entrypoint = "index.js"
-modules = ["nodejs-22"]
 hidden = [".config", "package-lock.json"]
+modules = ["nodejs-24"]
 
 [gitHubImport]
 requiredFiles = [".replit", "replit.nix", "package.json", "package-lock.json"]
